@@ -13,7 +13,7 @@ class HomeEinstein extends StatefulWidget {
 class _HomeEinsteinState extends State<HomeEinstein> {
   int selectedIndex = 0;
 
-  final List pages = [const EinsteinHall(), const UpdationEinstein()];
+  final List pages = [const EinsteinHall(), UpdationEinstein()];
 
   @override
   Widget build(BuildContext context) {

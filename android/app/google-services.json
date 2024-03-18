@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94063122501",
+    "project_id": "venue-6fc62",
+    "storage_bucket": "venue-6fc62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94063122501:android:ab16ef7f2107d90eb0ab2c",
+        "android_client_info": {
+          "package_name": "com.example.venue"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQYPwIV4dIPukmLkEWJRK4wQYDB4sKyNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
