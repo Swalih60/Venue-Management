@@ -1,38 +1,44 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:venue/components/components.dart';
 
 import '../../models/model.dart';
 
 class UpdationEinstein extends StatelessWidget {
   UpdationEinstein({super.key});
 
+  String formatDate(DateTime date) {
+    // Create a DateFormat object for formatting the date
+    DateFormat formatter = DateFormat('dd/MM/yyyy');
+
+    // Format the DateTime object into a string with the desired format
+    String formattedDate = formatter.format(date);
+
+    return formattedDate;
+  }
+
+  String formatTime(DateTime dateTime) {
+    // Create a DateFormat object for formatting time
+    DateFormat formatter =
+        DateFormat('h:mm a'); // 'h:mm a' for 12-hour format with AM/PM
+
+    // Format the DateTime object into a string with the desired format
+    String formattedTime = formatter.format(dateTime.toLocal());
+
+    return formattedTime;
+  }
+
   final FireBaseCRUD obj = FireBaseCRUD();
-
-  String formattedTime(String timeString) {
-    RegExp regex = RegExp(r'(\d{1,2}):(\d{2})');
-    Match match = regex.firstMatch(timeString) as Match;
-    int hour = int.parse(match.group(1)!);
-    int minute = int.parse(match.group(2)!);
-    String period = (hour < 12) ? 'AM' : 'PM';
-    hour = (hour == 0 || hour == 12) ? 12 : hour % 12;
-    String formattedHour = hour.toString().padLeft(2, '0');
-    String formattedMinute = minute.toString().padLeft(2, '0');
-    return '$formattedHour:$formattedMinute $period';
-  }
-
-  String formattedDate(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    int day = dateTime.day;
-    int month = dateTime.month;
-    int year = dateTime.year % 100;
-    return ("$day/$month/$year");
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: obj.readVenue(),
+        stream: FirebaseFirestore.instance
+            .collection('venues')
+            .orderBy('TimeStamp')
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List docs = snapshot.data!.docs;
@@ -45,42 +51,25 @@ class UpdationEinstein extends StatelessWidget {
                     document.data() as Map<String, dynamic>;
                 String event = data['event'];
                 String name = data['name'];
-                String date = data['date'].toString();
-                String sTime = data['sTime'].toString();
-                String eTime = data['eTime'].toString();
+                DateTime date = (data['date'] as Timestamp).toDate();
+                DateTime sTime = (data['sTime'] as Timestamp).toDate();
+                DateTime eTime = (data['eTime'] as Timestamp).toDate();
                 String sem = data['sem'];
                 String branch = data['branch'];
 
-                return ListTile(
-                    title: Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(event),
-                      ],
-                    ),
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(name),
-                        Text(sem),
-                        Text(branch),
-                      ],
-                    ),
-                    leading: Text(date),
-                    trailing: Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text("From : $sTime"),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text("To : $eTime"),
-                      ],
-                    ));
+                String dateList = formatDate(date);
+                String sTimeList = formatTime(sTime);
+                String eTimeList = formatTime(eTime);
+
+                return listile(
+                  date: dateList,
+                  branch: branch,
+                  sem: sem,
+                  sTime: sTimeList,
+                  eTime: eTimeList,
+                  event: event,
+                  name: name,
+                );
               },
             );
           }

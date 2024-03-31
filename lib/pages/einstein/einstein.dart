@@ -102,6 +102,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
       'date': Timestamp.fromDate(_selectedDate),
       'sTime': selectedStartTime,
       'eTime': selectedEndTime,
+      'TimeStamp': Timestamp.now(),
     });
     name.clear();
     event.clear();
