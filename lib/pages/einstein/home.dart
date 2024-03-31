@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:venue/pages/einstein/einstein_hall.dart';
-
-import 'updation.dart';
+import 'package:venue/pages/einstein/einstein.dart';
+import 'package:venue/pages/einstein/updation.dart';
 
 class HomeEinstein extends StatefulWidget {
   const HomeEinstein({super.key});

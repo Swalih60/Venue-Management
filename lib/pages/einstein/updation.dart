@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:venue/models/model.dart';
+
+import '../../models/model.dart';
 
 class UpdationEinstein extends StatelessWidget {
   UpdationEinstein({super.key});
@@ -44,9 +45,9 @@ class UpdationEinstein extends StatelessWidget {
                     document.data() as Map<String, dynamic>;
                 String event = data['event'];
                 String name = data['name'];
-                String date = data['date'];
-                String sTime = data['sTime'];
-                String eTime = data['eTime'];
+                String date = data['date'].toString();
+                String sTime = data['sTime'].toString();
+                String eTime = data['eTime'].toString();
                 String sem = data['sem'];
                 String branch = data['branch'];
 
@@ -67,17 +68,17 @@ class UpdationEinstein extends StatelessWidget {
                         Text(branch),
                       ],
                     ),
-                    leading: Text(formattedDate(date)),
+                    leading: Text(date),
                     trailing: Column(
                       children: [
                         const SizedBox(
                           height: 10,
                         ),
-                        Text("From : ${formattedTime(sTime)}"),
+                        Text("From : $sTime"),
                         const SizedBox(
                           height: 10,
                         ),
-                        Text("To : ${formattedTime(eTime)}"),
+                        Text("To : $eTime"),
                       ],
                     ));
               },

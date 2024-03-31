@@ -69,3 +69,49 @@ class textfield extends StatelessWidget {
     );
   }
 }
+
+// ignore: camel_case_types
+class elevatedButton1 extends StatelessWidget {
+  final String data;
+  final String text;
+  final IconData icon;
+  final Function()? onPressed;
+  const elevatedButton1({
+    Key? key,
+    required this.data,
+    required this.text,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text(data),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    text,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Icon(icon),
+                ],
+              ),
+            ],
+          ),
+        ));
+  }
+}

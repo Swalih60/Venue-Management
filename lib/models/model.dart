@@ -18,16 +18,7 @@ class FireBaseCRUD {
     });
   }
 
-  Future<List<DateTime>> fetchDate() async {
-    QuerySnapshot querySnapshot = await venues.get();
-    List<DateTime> dates = querySnapshot.docs.map((doc) {
-      String dateString = doc['date'];
-      return DateTime.parse(dateString);
-    }).toList();
-    return dates;
-  }
-
   Stream<QuerySnapshot> readVenue() {
-    return venues.orderBy('timeStamp', descending: true).snapshots();
+    return venues.orderBy('timeStamp').snapshots();
   }
 }
