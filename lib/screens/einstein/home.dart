@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:venue/pages/einstein/einstein.dart';
-import 'package:venue/pages/einstein/updation.dart';
+import 'package:venue/screens/einstein/einstein.dart';
+import 'package:venue/screens/einstein/updation.dart';
 
 class HomeEinstein extends StatefulWidget {
   const HomeEinstein({super.key});
@@ -12,7 +12,7 @@ class HomeEinstein extends StatefulWidget {
 class _HomeEinsteinState extends State<HomeEinstein> {
   int selectedIndex = 0;
 
-  final List pages = [const EinsteinHall(), UpdationEinstein()];
+  final List pages = [const EinsteinHall(), const UpdationEinstein()];
 
   @override
   Widget build(BuildContext context) {

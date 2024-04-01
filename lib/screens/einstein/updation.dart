@@ -1,44 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:venue/components/components.dart';
 
-import '../../models/model.dart';
-
 class UpdationEinstein extends StatelessWidget {
-  UpdationEinstein({super.key});
+  const UpdationEinstein({super.key});
 
   String formatDate(DateTime date) {
-    // Create a DateFormat object for formatting the date
     DateFormat formatter = DateFormat('dd/MM/yyyy');
 
-    // Format the DateTime object into a string with the desired format
     String formattedDate = formatter.format(date);
 
     return formattedDate;
   }
 
   String formatTime(DateTime dateTime) {
-    // Create a DateFormat object for formatting time
-    DateFormat formatter =
-        DateFormat('h:mm a'); // 'h:mm a' for 12-hour format with AM/PM
+    DateFormat formatter = DateFormat('h:mm a');
 
-    // Format the DateTime object into a string with the desired format
     String formattedTime = formatter.format(dateTime.toLocal());
 
     return formattedTime;
   }
 
-  final FireBaseCRUD obj = FireBaseCRUD();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('venues')
-            .orderBy('TimeStamp')
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('einstein').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List docs = snapshot.data!.docs;
@@ -56,12 +45,17 @@ class UpdationEinstein extends StatelessWidget {
                 DateTime eTime = (data['eTime'] as Timestamp).toDate();
                 String sem = data['sem'];
                 String branch = data['branch'];
+                String uid = data['uid'];
 
                 String dateList = formatDate(date);
                 String sTimeList = formatTime(sTime);
                 String eTimeList = formatTime(eTime);
 
+                String? currentUid = FirebaseAuth.instance.currentUser?.uid;
+
                 return listile(
+                  uid: uid,
+                  currentUid: currentUid,
                   date: dateList,
                   branch: branch,
                   sem: sem,
@@ -69,6 +63,7 @@ class UpdationEinstein extends StatelessWidget {
                   eTime: eTimeList,
                   event: event,
                   name: name,
+                  docId: docId,
                 );
               },
             );

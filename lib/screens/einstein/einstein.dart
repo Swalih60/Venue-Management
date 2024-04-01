@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/models/model.dart';
 
 class EinsteinHall extends StatefulWidget {
   const EinsteinHall({super.key});
@@ -16,7 +16,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
   String sem = 'S1';
   final name = TextEditingController();
   final event = TextEditingController();
-  FireBaseCRUD fs = FireBaseCRUD();
+
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _startTime = TimeOfDay.now();
   TimeOfDay _endTime = TimeOfDay.now();
@@ -58,7 +58,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
         _selectedDate.day, _endTime.hour, _endTime.minute);
 
     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('venues')
+        .collection('einstein')
         .where('date', isEqualTo: Timestamp.fromDate(_selectedDate))
         .get();
 
@@ -94,7 +94,10 @@ class _EinsteinHallState extends State<EinsteinHall> {
       }
     }
 
-    await FirebaseFirestore.instance.collection('venues').add({
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+
+    await FirebaseFirestore.instance.collection('einstein').add({
+      'uid': uid,
       'name': name.text,
       'event': event.text,
       'sem': sem,
@@ -245,7 +248,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                     onPressed: () => _selectTime(context, true),
                     data: 'From :',
                   ),
-                  const SizedBox(width: 30),
+                  const SizedBox(width: 20),
                   elevatedButton1(
                     text: _endTime.format(context),
                     icon: Icons.access_time,
