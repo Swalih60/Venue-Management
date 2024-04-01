@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:venue/components/components.dart';
+import 'package:venue/screens/einstein/updation.dart';
 
 class EinsteinHall extends StatefulWidget {
   const EinsteinHall({super.key});
@@ -17,51 +18,51 @@ class _EinsteinHallState extends State<EinsteinHall> {
   final name = TextEditingController();
   final event = TextEditingController();
 
-  DateTime _selectedDate = DateTime.now();
-  TimeOfDay _startTime = TimeOfDay.now();
-  TimeOfDay _endTime = TimeOfDay.now();
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay startTime = TimeOfDay.now();
+  TimeOfDay endTime = TimeOfDay.now();
 
-  Future<void> _selectDate(BuildContext context) async {
+  Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _selectedDate,
+      initialDate: selectedDate,
       firstDate: DateTime.now(),
       lastDate: DateTime(2030),
     );
-    if (picked != null && picked != _selectedDate) {
+    if (picked != null && picked != selectedDate) {
       setState(() {
-        _selectedDate = picked;
+        selectedDate = picked;
       });
     }
   }
 
-  Future<void> _selectTime(BuildContext context, bool isStartTime) async {
+  Future<void> selectTime(BuildContext context, bool isStartTime) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: isStartTime ? _startTime : _endTime,
+      initialTime: isStartTime ? startTime : endTime,
     );
     if (picked != null) {
       setState(() {
         if (isStartTime) {
-          _startTime = picked;
+          startTime = picked;
         } else {
-          _endTime = picked;
+          endTime = picked;
         }
       });
     }
   }
 
-  Future<void> _scheduleVenue() async {
-    final selectedStartTime = DateTime(_selectedDate.year, _selectedDate.month,
-        _selectedDate.day, _startTime.hour, _startTime.minute);
-    final selectedEndTime = DateTime(_selectedDate.year, _selectedDate.month,
-        _selectedDate.day, _endTime.hour, _endTime.minute);
+  Future<void> scheduleVenue(ctx) async {
+    final selectedStartTime = DateTime(selectedDate.year, selectedDate.month,
+        selectedDate.day, startTime.hour, startTime.minute);
+    final selectedEndTime = DateTime(selectedDate.year, selectedDate.month,
+        selectedDate.day, endTime.hour, endTime.minute);
 
     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('einstein')
-        .where('date', isEqualTo: Timestamp.fromDate(_selectedDate))
+        .where('date', isEqualTo: Timestamp.fromDate(selectedDate))
         .get();
-
+    print('start');
     for (final doc in querySnapshot.docs) {
       final start = (doc['sTime'] as Timestamp).toDate();
       final end = (doc['eTime'] as Timestamp).toDate();
@@ -71,9 +72,8 @@ class _EinsteinHallState extends State<EinsteinHall> {
           (selectedEndTime.isAfter(start) && selectedEndTime.isBefore(end)) ||
           (selectedStartTime.isBefore(start) && selectedEndTime.isAfter(end)) ||
           (selectedStartTime == start && selectedEndTime == end)) {
-        // ignore: use_build_context_synchronously
         showDialog(
-          context: context,
+          context: ctx,
           builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: Colors.red[200],
@@ -102,7 +102,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
       'event': event.text,
       'sem': sem,
       'branch': branch,
-      'date': Timestamp.fromDate(_selectedDate),
+      'date': Timestamp.fromDate(selectedDate),
       'sTime': selectedStartTime,
       'eTime': selectedEndTime,
       'TimeStamp': Timestamp.now(),
@@ -110,9 +110,8 @@ class _EinsteinHallState extends State<EinsteinHall> {
     name.clear();
     event.clear();
 
-    // ignore: use_build_context_synchronously
     showDialog(
-      context: context,
+      context: ctx,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.green[200],
@@ -134,6 +133,29 @@ class _EinsteinHallState extends State<EinsteinHall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Einstein Hall"),
+        shadowColor: Colors.blue,
+        actions: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const UpdationEinstein(),
+                  ));
+                },
+                icon: const Icon(Icons.update),
+                iconSize: 30,
+              ),
+              const SizedBox(
+                width: 16,
+              )
+            ],
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -231,9 +253,9 @@ class _EinsteinHallState extends State<EinsteinHall> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   elevatedButton1(
-                    text: "${_selectedDate.toLocal()}".split(' ')[0],
+                    text: "${selectedDate.toLocal()}".split(' ')[0],
                     icon: (Icons.calendar_today),
-                    onPressed: () => _selectDate(context),
+                    onPressed: () => selectDate(context),
                     data: 'Select a date :',
                   ),
                 ],
@@ -243,33 +265,33 @@ class _EinsteinHallState extends State<EinsteinHall> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   elevatedButton1(
-                    text: _startTime.format(context),
+                    text: startTime.format(context),
                     icon: (Icons.access_time),
-                    onPressed: () => _selectTime(context, true),
+                    onPressed: () => selectTime(context, true),
                     data: 'From :',
                   ),
                   const SizedBox(width: 20),
                   elevatedButton1(
-                    text: _endTime.format(context),
+                    text: endTime.format(context),
                     icon: Icons.access_time,
-                    onPressed: () => _selectTime(context, false),
+                    onPressed: () => selectTime(context, false),
                     data: 'To :',
                   ),
                 ],
               ),
               const SizedBox(height: 80),
-              Center(
-                child: ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.green)),
-                  onPressed: _scheduleVenue,
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 60.0, vertical: 25),
-                    child: Text(
-                      'SCHEDULE',
-                      style: TextStyle(fontSize: 16),
-                    ),
+              ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60))),
+                  backgroundColor: const MaterialStatePropertyAll(Colors.green),
+                ),
+                onPressed: () => scheduleVenue(context),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 25),
+                  child: Text(
+                    'SCHEDULE',
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),

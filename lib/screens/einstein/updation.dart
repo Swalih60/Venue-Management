@@ -25,7 +25,12 @@ class UpdationEinstein extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? currentUid = FirebaseAuth.instance.currentUser?.uid;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Schedules"),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('einstein').snapshots(),
         builder: (context, snapshot) {
@@ -50,8 +55,6 @@ class UpdationEinstein extends StatelessWidget {
                 String dateList = formatDate(date);
                 String sTimeList = formatTime(sTime);
                 String eTimeList = formatTime(eTime);
-
-                String? currentUid = FirebaseAuth.instance.currentUser?.uid;
 
                 return listile(
                   uid: uid,
