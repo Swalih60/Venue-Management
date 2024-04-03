@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +15,43 @@ class EinsteinHall extends StatefulWidget {
 }
 
 class _EinsteinHallState extends State<EinsteinHall> {
+  @override
+  void initState() {
+    super.initState();
+
+    selectedDate = DateTime.now();
+    startTime = TimeOfDay.now();
+    endTime = TimeOfDay.now();
+
+    branch = 'CSE';
+    sem = 'S1';
+
+    loadExistingBookings();
+  }
+
+  Future<QuerySnapshot<Object?>> loadExistingBookings() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('einstein')
+          .where('date', isEqualTo: Timestamp.fromDate(selectedDate))
+          .get();
+
+      return querySnapshot;
+    } catch (e) {
+      log(e.toString());
+      throw Exception('Failed to load existing bookings');
+    }
+  }
+
+  String? uid = FirebaseAuth.instance.currentUser?.uid;
   String branch = 'CSE';
   String sem = 'S1';
   final name = TextEditingController();
   final event = TextEditingController();
 
-  DateTime selectedDate = DateTime.now();
-  TimeOfDay startTime = TimeOfDay.now();
-  TimeOfDay endTime = TimeOfDay.now();
+  late DateTime selectedDate;
+  late TimeOfDay startTime;
+  late TimeOfDay endTime;
 
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -53,48 +84,56 @@ class _EinsteinHallState extends State<EinsteinHall> {
   }
 
   Future<void> scheduleVenue(ctx) async {
+    log("shedule called");
     final selectedStartTime = DateTime(selectedDate.year, selectedDate.month,
         selectedDate.day, startTime.hour, startTime.minute);
     final selectedEndTime = DateTime(selectedDate.year, selectedDate.month,
         selectedDate.day, endTime.hour, endTime.minute);
 
-    final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('einstein')
-        .where('date', isEqualTo: Timestamp.fromDate(selectedDate))
-        .get();
-    print('start');
-    for (final doc in querySnapshot.docs) {
-      final start = (doc['sTime'] as Timestamp).toDate();
-      final end = (doc['eTime'] as Timestamp).toDate();
+    try {
+      log("selected date" + selectedDate.toString());
+      final QuerySnapshot querySnapshot = await loadExistingBookings();
 
-      if ((selectedStartTime.isAfter(start) &&
-              selectedStartTime.isBefore(end)) ||
-          (selectedEndTime.isAfter(start) && selectedEndTime.isBefore(end)) ||
-          (selectedStartTime.isBefore(start) && selectedEndTime.isAfter(end)) ||
-          (selectedStartTime == start && selectedEndTime == end)) {
-        showDialog(
-          context: ctx,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              backgroundColor: Colors.red[200],
-              title: const Text('Booking Failed'),
-              content: const Text('Venue already booked for this time period'),
-              actions: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
-        return;
+      log("calleddd!!!!!!!!!!!!!!!");
+      log(querySnapshot.docs.toString());
+
+      for (final doc in querySnapshot.docs) {
+        final start = (doc['sTime'] as Timestamp).toDate();
+        final end = (doc['eTime'] as Timestamp).toDate();
+        log("start time" + start.toString());
+        log("Endtime" + end.toString());
+
+        if ((selectedStartTime.isAfter(start) &&
+                selectedStartTime.isBefore(end)) ||
+            (selectedEndTime.isAfter(start) && selectedEndTime.isBefore(end)) ||
+            (selectedStartTime.isBefore(start) &&
+                selectedEndTime.isAfter(end)) ||
+            (selectedStartTime == start && selectedEndTime == end)) {
+          showDialog(
+            context: ctx,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.red[200],
+                title: const Text('Booking Failed'),
+                content:
+                    const Text('Venue already booked for this time period'),
+                actions: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+          return;
+        }
       }
+    } catch (e) {
+      log(e.toString());
     }
-
-    String? uid = FirebaseAuth.instance.currentUser?.uid;
 
     await FirebaseFirestore.instance.collection('einstein').add({
       'uid': uid,
@@ -295,6 +334,12 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ),
                 ),
               ),
+              const SizedBox(height: 40),
+              const Text(
+                "Please check existing schedules before booking",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+              )
             ],
           ),
         ),

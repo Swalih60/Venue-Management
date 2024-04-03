@@ -156,7 +156,10 @@ class listile extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text(event),
+                  Text(
+                    event,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               subtitle: Row(

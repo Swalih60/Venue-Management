@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/screens/einstein/einstein.dart';
+
+import 'einstein/einstein.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

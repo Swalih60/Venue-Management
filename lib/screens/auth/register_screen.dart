@@ -1,32 +1,52 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../components/components.dart';
+import '../../components/components.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({
-    super.key,
-    required this.onTap,
-  });
+class RegisterScreen extends StatefulWidget {
   final Function()? onTap;
-  final auth = FirebaseAuth.instance.currentUser;
+
+  const RegisterScreen({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final userNameController = TextEditingController();
+
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+
+  final confirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[350],
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 200,
+                height: 150,
+              ),
+              LoginTextfield(
+                controller: userNameController,
+                hintText: 'Username',
+                obsecureText: false,
+              ),
+              const SizedBox(
+                height: 10,
               ),
               LoginTextfield(
                 controller: emailController,
@@ -44,17 +64,10 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
+              LoginTextfield(
+                controller: confirmController,
+                hintText: 'Confirm Password',
+                obsecureText: true,
               ),
               const SizedBox(
                 height: 25,
@@ -62,10 +75,27 @@ class LoginScreen extends StatelessWidget {
               button2(
                 onTap: () async {
                   try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
+                    if (passwordController.text == confirmController.text) {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+                      String? uid = FirebaseAuth.instance.currentUser?.uid;
+                      FirebaseFirestore.instance.collection('Users').add(
+                          {'username': userNameController.text, 'uid': uid});
+
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Registered successfully"),
+                        backgroundColor: Colors.green,
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Passwords don't match"),
+                        backgroundColor: Colors.red,
+                      ));
+                    }
                   } on FirebaseAuthException catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(e.code),
@@ -73,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                     ));
                   }
                 },
-                text: 'Sign In',
+                text: 'Register',
               ),
               const SizedBox(
                 height: 50,
@@ -82,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Not a member?',
+                    'Already a member?',
                     style: TextStyle(
                       color: Colors.grey[700],
                     ),
@@ -91,9 +121,9 @@ class LoginScreen extends StatelessWidget {
                     width: 4,
                   ),
                   GestureDetector(
-                    onTap: onTap,
+                    onTap: widget.onTap,
                     child: const Text(
-                      'Register now',
+                      'Log in',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -104,7 +134,7 @@ class LoginScreen extends StatelessWidget {
               )
             ],
           ),
-        ),
+        )),
       ),
     );
   }
