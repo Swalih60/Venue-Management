@@ -19,7 +19,8 @@ class _EinsteinHallState extends State<EinsteinHall> {
   void initState() {
     super.initState();
 
-    selectedDate = DateTime.now();
+    selectedDate = DateTime.now().subtract(const Duration(days: 1));
+
     startTime = TimeOfDay.now();
     endTime = TimeOfDay.now();
 
@@ -57,7 +58,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(const Duration(days: 1)),
       lastDate: DateTime(2030),
     );
     if (picked != null && picked != selectedDate) {
@@ -84,14 +85,12 @@ class _EinsteinHallState extends State<EinsteinHall> {
   }
 
   Future<void> scheduleVenue(ctx) async {
-    log("shedule called");
     final selectedStartTime = DateTime(selectedDate.year, selectedDate.month,
         selectedDate.day, startTime.hour, startTime.minute);
     final selectedEndTime = DateTime(selectedDate.year, selectedDate.month,
         selectedDate.day, endTime.hour, endTime.minute);
 
     try {
-      log("selected date" + selectedDate.toString());
       final QuerySnapshot querySnapshot = await loadExistingBookings();
 
       log("calleddd!!!!!!!!!!!!!!!");
@@ -100,8 +99,6 @@ class _EinsteinHallState extends State<EinsteinHall> {
       for (final doc in querySnapshot.docs) {
         final start = (doc['sTime'] as Timestamp).toDate();
         final end = (doc['eTime'] as Timestamp).toDate();
-        log("start time" + start.toString());
-        log("Endtime" + end.toString());
 
         if ((selectedStartTime.isAfter(start) &&
                 selectedStartTime.isBefore(end)) ||
