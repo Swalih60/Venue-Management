@@ -203,6 +203,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
             children: [
               Text(
                 text,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 15,
@@ -220,11 +221,11 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               textfield(text: 'Name', controller: name),
               const SizedBox(height: 10),
               textfield(text: 'Event', controller: event),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 DropdownButton<String>(
                   icon: const Icon(Icons.arrow_drop_down),
@@ -305,7 +306,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                 ),
               ]),
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -337,7 +338,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               ElevatedButton(
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
@@ -353,7 +354,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               const Text(
                 "Please check existing schedules before booking",
                 style:

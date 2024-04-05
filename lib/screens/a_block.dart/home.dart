@@ -19,6 +19,7 @@ class HomeABlock extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
                     width: 10,
@@ -46,6 +47,7 @@ class HomeABlock extends StatelessWidget {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
                     width: 10,
@@ -69,6 +71,7 @@ class HomeABlock extends StatelessWidget {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
                     width: 10,
@@ -92,6 +95,7 @@ class HomeABlock extends StatelessWidget {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
                     width: 10,
