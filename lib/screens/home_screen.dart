@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:venue/components/components.dart';
-
-import 'einstein/einstein.dart';
+import 'package:venue/screens/a_block.dart/home.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,8 +9,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Block's"),
         centerTitle: true,
-        title: const Text("VENUE'S"),
         actions: [
           IconButton(
               onPressed: () {
@@ -22,105 +20,50 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Einstein Hall',
-                    icon: Icons.house,
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const EinsteinHall(),
-                      ));
-                    },
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const HomeABlock(),
+                ));
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  "A Block",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-              const SizedBox(
-                height: 10,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  "B Block",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text(
+                  "Open Stage",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

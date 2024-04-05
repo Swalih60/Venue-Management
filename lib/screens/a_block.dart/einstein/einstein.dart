@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/screens/einstein/updation.dart';
+import 'package:venue/screens/a_block.dart/einstein/updation.dart';
 
 class EinsteinHall extends StatefulWidget {
   const EinsteinHall({super.key});
@@ -49,6 +49,9 @@ class _EinsteinHallState extends State<EinsteinHall> {
   String sem = 'S1';
   final name = TextEditingController();
   final event = TextEditingController();
+
+  String text =
+      "Einstein Hall in A Block offers a convenient and functional space for academic activities. With easy accessibility for students and faculty, it accommodates lectures, workshops, and discussions. The hall's 100-seat capacity and air conditioning ensure comfort during academic endeavors.";
 
   late DateTime selectedDate;
   late TimeOfDay startTime;
@@ -198,11 +201,30 @@ class _EinsteinHallState extends State<EinsteinHall> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                text,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.black,
+                  letterSpacing: 1.5,
+                  wordSpacing: 2.0,
+                  shadows: [
+                    Shadow(
+                      color: Colors.blue,
+                      blurRadius: 2,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 20),
               textfield(text: 'Name', controller: name),
               const SizedBox(height: 10),
               textfield(text: 'Event', controller: event),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 DropdownButton<String>(
                   icon: const Icon(Icons.arrow_drop_down),
@@ -283,7 +305,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                 ),
               ]),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -315,7 +337,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ),
                 ],
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 30),
               ElevatedButton(
                 style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
@@ -331,7 +353,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 10),
               const Text(
                 "Please check existing schedules before booking",
                 style:

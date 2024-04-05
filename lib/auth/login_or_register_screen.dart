@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:venue/screens/auth/register_screen.dart';
+import 'package:venue/auth/register_screen.dart';
 
 import 'login_screen.dart';
 
