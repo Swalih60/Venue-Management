@@ -313,7 +313,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                 children: [
                   elevatedButton1(
                     text: "${selectedDate.toLocal()}".split(' ')[0],
-                    icon: (Icons.calendar_today),
+                    icon: (Icons.calendar_month),
                     onPressed: () => selectDate(context),
                     data: 'Select a date :',
                   ),

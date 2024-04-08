@@ -33,7 +33,13 @@ Future<void> deleteOldData() async {
   for (var doc in snapshot.docs) {
     final date = (doc.data() as Map<String, dynamic>)['date'] as Timestamp;
     final docDate = date.toDate();
-    if (docDate.isBefore(currentDate)) {
+
+    if (docDate.year < currentDate.year ||
+        (docDate.year == currentDate.year &&
+            docDate.month < currentDate.month) ||
+        (docDate.year == currentDate.year &&
+            docDate.month == currentDate.month &&
+            docDate.day < currentDate.day)) {
       doc.reference.delete();
     }
   }

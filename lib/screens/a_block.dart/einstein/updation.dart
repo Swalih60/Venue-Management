@@ -30,6 +30,9 @@ class UpdationEinstein extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Schedules"),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.calendar_month))
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('einstein').snapshots(),
