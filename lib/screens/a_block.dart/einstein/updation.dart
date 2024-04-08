@@ -3,9 +3,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:venue/components/components.dart';
+import 'package:venue/screens/a_block.dart/einstein/search.dart';
 
-class UpdationEinstein extends StatelessWidget {
+class UpdationEinstein extends StatefulWidget {
   const UpdationEinstein({super.key});
+
+  @override
+  State<UpdationEinstein> createState() => _UpdationEinsteinState();
+}
+
+class _UpdationEinsteinState extends State<UpdationEinstein> {
+  @override
+  void initState() {
+    selectedDate = DateTime.now();
+    super.initState();
+  }
+
+  late DateTime selectedDate;
 
   String formatDate(DateTime date) {
     DateFormat formatter = DateFormat('dd/MM/yyyy');
@@ -23,6 +37,27 @@ class UpdationEinstein extends StatelessWidget {
     return formattedTime;
   }
 
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now().subtract(const Duration(days: 1)),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        onDatePicked(selectedDate);
+      });
+    }
+  }
+
+  void onDatePicked(DateTime pickedDate) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => SearchEinstein(date: pickedDate),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     String? currentUid = FirebaseAuth.instance.currentUser?.uid;
@@ -31,7 +66,11 @@ class UpdationEinstein extends StatelessWidget {
         centerTitle: true,
         title: const Text("Schedules"),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.calendar_month))
+          IconButton(
+              onPressed: () {
+                selectDate(context);
+              },
+              icon: const Icon(Icons.calendar_month))
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
