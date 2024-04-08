@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 // ignore: camel_case_types
 class elevatedButton extends StatelessWidget {
   final String text;
-  final IconData icon;
+
   final Function()? onPressed;
   const elevatedButton({
     Key? key,
     required this.text,
-    required this.icon,
     required this.onPressed,
   }) : super(key: key);
 
@@ -21,18 +20,10 @@ class elevatedButton extends StatelessWidget {
       width: 180,
       child: ElevatedButton(
           onPressed: onPressed,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                text,
-                style: const TextStyle(fontSize: 20),
-              ),
-            ],
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 20),
           )),
     );
   }

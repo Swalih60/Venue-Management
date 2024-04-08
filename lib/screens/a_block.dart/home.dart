@@ -18,15 +18,14 @@ class HomeABlock extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   elevatedButton(
                     text: 'Einstein Hall',
-                    icon: Icons.house,
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const EinsteinHall(),
@@ -37,8 +36,7 @@ class HomeABlock extends StatelessWidget {
                     width: 10,
                   ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'A113 Board Room',
                     onPressed: () {},
                   ),
                 ],
@@ -49,20 +47,15 @@ class HomeABlock extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Conference Room',
                     onPressed: () {},
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Incubation Center',
                     onPressed: () {},
                   ),
                 ],
@@ -73,20 +66,15 @@ class HomeABlock extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Counselling Centre',
                     onPressed: () {},
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Computer Centre',
                     onPressed: () {},
                   ),
                 ],
@@ -97,23 +85,135 @@ class HomeABlock extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Elective Room A309',
                     onPressed: () {},
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   elevatedButton(
-                    text: 'Seminar Hall',
-                    icon: Icons.house,
+                    text: 'Network/Microproc/Proj A402',
                     onPressed: () {},
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'Prog/Database A401',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Guest Room A412',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'IQAC A11',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Phy Lab A510',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'Communication Lab A512',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Digital Lab A513',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'Electric Circuit Lab A514',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Chem/ Envi Engin Lab a502',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'Lag Lab/Prog Lab-2 A505',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Analog Integrated Lab A506',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  elevatedButton(
+                    text: 'Project Lab A507',
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  elevatedButton(
+                    text: 'Vlsi And Embebbed System Lab A509',
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),

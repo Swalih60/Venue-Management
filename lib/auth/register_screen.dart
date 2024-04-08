@@ -19,6 +19,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool obscureText2 = true;
   bool obscureText = true;
   String currentRole = 'Student';
   String selectedItem = 'S1';
@@ -204,10 +205,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(
                 height: 10,
               ),
-              LoginTextfield(
-                controller: confirmController,
-                hintText: 'Confirm Password',
-                obsecureText: true,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: obscureText2,
+                  decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              obscureText2 = !obscureText2;
+                            });
+                          },
+                          icon: Icon(
+                            obscureText2
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: obscureText2 ? Colors.grey : Colors.blue,
+                          )),
+                      hintText: 'Confirm Password',
+                      hintStyle: TextStyle(
+                        color: Colors.grey[500],
+                      )),
+                ),
               ),
               const SizedBox(
                 height: 30,

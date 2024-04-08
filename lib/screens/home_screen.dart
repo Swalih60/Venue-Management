@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:venue/screens/a_block.dart/home.dart';
+import 'package:venue/screens/open_stage.dart/home.dart';
+
+import 'b_block.dart/home.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -86,7 +89,11 @@ class HomeScreen extends StatelessWidget {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const HomeBBlock(),
+                ));
+              },
               child: const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Text(
@@ -99,7 +106,11 @@ class HomeScreen extends StatelessWidget {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const OpenStage(),
+                ));
+              },
               child: const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Text(
