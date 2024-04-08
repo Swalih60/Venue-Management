@@ -41,7 +41,7 @@ class SearchEinstein extends StatelessWidget {
           if (snapshot.hasData) {
             List docs = snapshot.data!.docs;
             List<Widget> widgets = [];
-            docs.forEach((document) {
+            for (var document in docs) {
               Map<String, dynamic> data =
                   document.data() as Map<String, dynamic>;
               DateTime documentDate = (data['date'] as Timestamp).toDate();
@@ -72,7 +72,7 @@ class SearchEinstein extends StatelessWidget {
                   ),
                 );
               }
-            });
+            }
             if (widgets.isNotEmpty) {
               return ListView(
                 children: widgets,
