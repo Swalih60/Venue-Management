@@ -17,9 +17,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthScreen(),
+      home: const AuthScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        appBarTheme: AppBarTheme(backgroundColor: Colors.purple[200]),
+      ),
     );
   }
 }

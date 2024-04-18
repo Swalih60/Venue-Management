@@ -278,3 +278,27 @@ class button2 extends StatelessWidget {
     );
   }
 }
+
+class IconText extends StatelessWidget {
+  const IconText({
+    Key? key,
+    required this.icon,
+    required this.data,
+  }) : super(key: key);
+
+  final IconData icon;
+  final String data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon),
+        const SizedBox(
+          width: 3,
+        ),
+        Text(": $data")
+      ],
+    );
+  }
+}

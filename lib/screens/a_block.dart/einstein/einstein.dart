@@ -50,9 +50,6 @@ class _EinsteinHallState extends State<EinsteinHall> {
   final name = TextEditingController();
   final event = TextEditingController();
 
-  String text =
-      "Einstein Hall in A Block offers a convenient and functional space for academic activities. With easy accessibility for students and faculty, it accommodates lectures, workshops, and discussions. The hall's 100-seat capacity and air conditioning ensure comfort during academic endeavors.";
-
   late DateTime selectedDate;
   late TimeOfDay startTime;
   late TimeOfDay endTime;
@@ -201,25 +198,11 @@ class _EinsteinHallState extends State<EinsteinHall> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
-                  letterSpacing: 1.5,
-                  wordSpacing: 2.0,
-                  shadows: [
-                    Shadow(
-                      color: Colors.blue,
-                      blurRadius: 2,
-                      offset: Offset(1, 1),
-                    ),
-                  ],
-                ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconText(icon: Icons.event_seat, data: '100'),
+                ],
               ),
               const SizedBox(height: 40),
               textfield(text: 'Name', controller: name),
@@ -321,7 +304,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
               ),
               const SizedBox(height: 30),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   elevatedButton1(
                     text: startTime.format(context),
@@ -329,7 +312,7 @@ class _EinsteinHallState extends State<EinsteinHall> {
                     onPressed: () => selectTime(context, true),
                     data: 'From :',
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 5),
                   elevatedButton1(
                     text: endTime.format(context),
                     icon: Icons.access_time,
