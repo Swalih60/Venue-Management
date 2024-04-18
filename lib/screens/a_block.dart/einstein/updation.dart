@@ -109,6 +109,7 @@ class _UpdationEinsteinState extends State<UpdationEinstein> {
                   event: event,
                   name: name,
                   docId: docId,
+                  databaseName: 'einstein',
                 );
               },
             );

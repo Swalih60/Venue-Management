@@ -69,6 +69,7 @@ class SearchEinstein extends StatelessWidget {
                     event: event,
                     name: name,
                     docId: document.id,
+                    databaseName: 'einstein',
                   ),
                 );
               }

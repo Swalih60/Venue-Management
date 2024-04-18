@@ -110,6 +110,7 @@ class elevatedButton1 extends StatelessWidget {
 
 // ignore: camel_case_types
 class listile extends StatelessWidget {
+  final String databaseName;
   final String? uid;
   final String? currentUid;
   final String docId;
@@ -123,6 +124,7 @@ class listile extends StatelessWidget {
 
   const listile({
     Key? key,
+    required this.databaseName,
     required this.uid,
     required this.currentUid,
     required this.docId,
@@ -174,7 +176,7 @@ class listile extends StatelessWidget {
                     child: IconButton(
                         onPressed: () {
                           FirebaseFirestore.instance
-                              .collection('einstein')
+                              .collection(databaseName)
                               .doc(docId)
                               .delete();
                         },
