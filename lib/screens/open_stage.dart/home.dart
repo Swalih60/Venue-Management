@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:venue/components/components.dart';
+import 'package:venue/screens/open_stage.dart/A%20Block%20Atrium/main_screen.dart';
+import 'package:venue/screens/open_stage.dart/B%20Block%20Open%20Stage/main_screen.dart';
 
 class OpenStage extends StatelessWidget {
   const OpenStage({super.key});
@@ -24,14 +26,22 @@ class OpenStage extends StatelessWidget {
                 children: [
                   elevatedButton(
                     text: 'A Block Atrium',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ABlockAtrium(),
+                      ));
+                    },
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   elevatedButton(
                     text: 'B Block Open Stage',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => BBlockOpenStage(),
+                      ));
+                    },
                   ),
                 ],
               ),

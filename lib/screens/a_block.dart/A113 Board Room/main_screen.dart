@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:venue/components/pages/main_page.dart';
-import 'package:venue/screens/a_block.dart/A113BoardRoom/updation_screen.dart';
+import 'package:venue/screens/a_block.dart/A113%20Board%20Room/updation_screen.dart';
 
-class A113BoardRoomScreen extends StatelessWidget {
+// ignore: use_key_in_widget_constructors
+class A113BoardRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
