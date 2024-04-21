@@ -4,14 +4,14 @@ import 'package:venue/components/pages/search_page.dart';
 import 'package:venue/components/pages/updation_page.dart';
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoom extends StatelessWidget {
+class ElectiveRoomA309 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: ReusableMainScreen(
-          databaseName: 'A113 Board Room',
-          updationScreen: A113BoardRoomUpdationScreen(),
+          databaseName: 'Elective Room A309',
+          updationScreen: ElectiveRoomA309UpdationScreen(),
         ),
       ),
     );
@@ -19,25 +19,25 @@ class A113BoardRoom extends StatelessWidget {
 }
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoomSearchScreen extends StatelessWidget {
+class ElectiveRoomA309SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body:
-          Center(child: ReusableSearchScreen(databaseName: 'A113 Board Room')),
+      body: Center(
+          child: ReusableSearchScreen(databaseName: 'Elective Room A309')),
     );
   }
 }
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoomUpdationScreen extends StatelessWidget {
+class ElectiveRoomA309UpdationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: ReusableUpdationScreen(
-        databaseName: 'Conference Room',
-        searchScreen: A113BoardRoomSearchScreen(),
+        databaseName: 'Counselling Centre',
+        searchScreen: ElectiveRoomA309SearchScreen(),
       )),
     );
   }

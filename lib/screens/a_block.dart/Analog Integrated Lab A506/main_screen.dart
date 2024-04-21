@@ -4,14 +4,14 @@ import 'package:venue/components/pages/search_page.dart';
 import 'package:venue/components/pages/updation_page.dart';
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoom extends StatelessWidget {
+class AnalogIntegratedLabA506 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: ReusableMainScreen(
-          databaseName: 'A113 Board Room',
-          updationScreen: A113BoardRoomUpdationScreen(),
+          databaseName: 'Analog Integrated Lab A506',
+          updationScreen: AnalogIntegratedLabA506UpdationScreen(),
         ),
       ),
     );
@@ -19,25 +19,26 @@ class A113BoardRoom extends StatelessWidget {
 }
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoomSearchScreen extends StatelessWidget {
+class AnalogIntegratedLabA506SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body:
-          Center(child: ReusableSearchScreen(databaseName: 'A113 Board Room')),
+      body: Center(
+          child:
+              ReusableSearchScreen(databaseName: 'Analog Integrated Lab A506')),
     );
   }
 }
 
 // ignore: use_key_in_widget_constructors
-class A113BoardRoomUpdationScreen extends StatelessWidget {
+class AnalogIntegratedLabA506UpdationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: ReusableUpdationScreen(
-        databaseName: 'Conference Room',
-        searchScreen: A113BoardRoomSearchScreen(),
+        databaseName: 'Analog Integrated Lab A506',
+        searchScreen: AnalogIntegratedLabA506SearchScreen(),
       )),
     );
   }
