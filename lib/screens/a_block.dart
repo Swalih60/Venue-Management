@@ -1,26 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:venue/components/all_in_one.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/screens/a_block.dart/A113%20Board%20Room/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Analog%20Integrated%20Lab%20A506/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Chem%20Envi%20Engin%20Lab%20a502/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Communication%20Lab%20A512/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Computer%20Centre/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Conference%20Room/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Counselling%20Centre/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Digital%20Lab%20A513/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Elective%20Room%20A309/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Electric%20Circuit%20Lab%20A514/main_screen.dart';
-import 'package:venue/screens/a_block.dart/IQAC%20A11/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Incubation%20Center/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Lag%20Lab%20Prog%20Lab2%20A505/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Network%20Microproc%20Proj%20A402/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Phy%20Lab%20A510/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Prog%20Database%20A401/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Project%20Lab%20A507/main_screen.dart';
-import 'package:venue/screens/a_block.dart/Vlsi%20And%20Embebbed%20System%20Lab%20A509/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Guest%20Room%20A412/main_screen.dart';
-
-import 'einstein/einstein.dart';
 
 class HomeABlock extends StatelessWidget {
   const HomeABlock({super.key});
@@ -30,7 +10,10 @@ class HomeABlock extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("VENUE'S"),
+        title: const Text(
+          "VENUE'S",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -47,7 +30,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Einstein Hall',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const EinsteinHall(),
+                        builder: (context) =>
+                            const AllInOneScreen(databaseName: 'Einstein Hall'),
                       ));
                     },
                   ),
@@ -58,7 +42,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'A113 Board Room',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => A113BoardRoom(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'A113 Board Room'),
                       ));
                     },
                   ),
@@ -74,7 +59,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Conference Room',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ConferenceRoom(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Conference Room'),
                       ));
                     },
                   ),
@@ -85,7 +71,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Incubation Center',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => IncubationCenter(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Incubation Center'),
                       ));
                     },
                   ),
@@ -101,7 +88,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Counselling Centre',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CounsellingCentre(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Counselling Centre'),
                       ));
                     },
                   ),
@@ -112,7 +100,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Computer Centre',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ComputerCentre(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Computer Centre'),
                       ));
                     },
                   ),
@@ -128,7 +117,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Elective Room A309',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ElectiveRoomA309(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Elective Room A309'),
                       ));
                     },
                   ),
@@ -139,7 +129,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Network/Microproc/Proj A402',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NetworkMicroprocProjA402(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Network/Microproc/Proj A402'),
                       ));
                     },
                   ),
@@ -155,7 +146,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Prog/Database A401',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ProgDatabaseA401(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Prog/Database A401'),
                       ));
                     },
                   ),
@@ -166,7 +158,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Guest Room A412',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => GuestRoomA412(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Guest Room A412'),
                       ));
                     },
                   ),
@@ -182,7 +175,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'IQAC A11',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => IQACA11(),
+                        builder: (context) =>
+                            const AllInOneScreen(databaseName: 'IQAC A11'),
                       ));
                     },
                   ),
@@ -193,7 +187,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Phy Lab A510',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PhyLabA510(),
+                        builder: (context) =>
+                            const AllInOneScreen(databaseName: 'Phy Lab A510'),
                       ));
                     },
                   ),
@@ -209,7 +204,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Communication Lab A512',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => CommunicationLabA512(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Communication Lab A512'),
                       ));
                     },
                   ),
@@ -220,7 +216,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Digital Lab A513',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DigitalLabA513(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Digital Lab A513'),
                       ));
                     },
                   ),
@@ -236,7 +233,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Electric Circuit Lab A514',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ElectricCircuitLabA514(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Electric Circuit Lab A514'),
                       ));
                     },
                   ),
@@ -247,7 +245,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Chem/ Envi Engin Lab a502',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ChemEnviEnginLaba502(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Chem/ Envi Engin Lab a502'),
                       ));
                     },
                   ),
@@ -263,7 +262,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Lag Lab/Prog Lab-2 A505',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => LagLabProgLab2A505(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Lag Lab/Prog Lab-2 A505'),
                       ));
                     },
                   ),
@@ -274,7 +274,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Analog Integrated Lab A506',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AnalogIntegratedLabA506(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Analog Integrated Lab A506'),
                       ));
                     },
                   ),
@@ -290,7 +291,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Project Lab A507',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ProjectLabA507(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Project Lab A507'),
                       ));
                     },
                   ),
@@ -301,7 +303,8 @@ class HomeABlock extends StatelessWidget {
                     text: 'Vlsi And Embebbed System Lab A509',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => VlsiAndEmbebbedSystemLabA509(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Vlsi And Embebbed System Lab A509'),
                       ));
                     },
                   ),

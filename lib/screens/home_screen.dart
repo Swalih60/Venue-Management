@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:venue/screens/a_block.dart/home.dart';
-import 'package:venue/screens/open_stage.dart/home.dart';
+import 'package:venue/screens/a_block.dart';
+import 'package:venue/screens/open_stage.dart';
 
-import 'b_block.dart/home.dart';
+import 'b_block.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -14,7 +14,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Block's"),
+        title: const Text(
+          "Block's",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         actions: [
           IconButton(

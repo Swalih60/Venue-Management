@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MainApp());
-  deleteOldData();
+  await deleteOldData(databaseNames);
 }
 
 class MainApp extends StatelessWidget {
@@ -28,23 +28,30 @@ class MainApp extends StatelessWidget {
   }
 }
 
-Future<void> deleteOldData() async {
-  final CollectionReference collectionRef =
-      FirebaseFirestore.instance.collection('einstein');
-  final QuerySnapshot snapshot = await collectionRef.get();
+List<String> databaseNames = [
+  'Einstein Hall',
+];
+
+Future<void> deleteOldData(List<String> databaseNames) async {
   final currentDate = DateTime.now();
 
-  for (var doc in snapshot.docs) {
-    final date = (doc.data() as Map<String, dynamic>)['date'] as Timestamp;
-    final docDate = date.toDate();
+  for (var dbName in databaseNames) {
+    final CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection(dbName);
+    final QuerySnapshot snapshot = await collectionRef.get();
 
-    if (docDate.year < currentDate.year ||
-        (docDate.year == currentDate.year &&
-            docDate.month < currentDate.month) ||
-        (docDate.year == currentDate.year &&
-            docDate.month == currentDate.month &&
-            docDate.day < currentDate.day)) {
-      doc.reference.delete();
+    for (var doc in snapshot.docs) {
+      final date = (doc.data() as Map<String, dynamic>)['date'] as Timestamp;
+      final docDate = date.toDate();
+
+      if (docDate.year < currentDate.year ||
+          (docDate.year == currentDate.year &&
+              docDate.month < currentDate.month) ||
+          (docDate.year == currentDate.year &&
+              docDate.month == currentDate.month &&
+              docDate.day < currentDate.day)) {
+        await doc.reference.delete();
+      }
     }
   }
 }

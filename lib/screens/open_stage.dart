@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:venue/components/all_in_one.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/screens/open_stage.dart/A%20Block%20Atrium/main_screen.dart';
-import 'package:venue/screens/open_stage.dart/B%20Block%20Open%20Stage/main_screen.dart';
 
 class OpenStage extends StatelessWidget {
   const OpenStage({super.key});
@@ -11,7 +10,10 @@ class OpenStage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("VENUE'S"),
+        title: const Text(
+          "VENUE'S",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -28,7 +30,8 @@ class OpenStage extends StatelessWidget {
                     text: 'A Block Atrium',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ABlockAtrium(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'A Block Atrium'),
                       ));
                     },
                   ),
@@ -39,7 +42,8 @@ class OpenStage extends StatelessWidget {
                     text: 'B Block Open Stage',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => BBlockOpenStage(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'B Block Open Stage'),
                       ));
                     },
                   ),

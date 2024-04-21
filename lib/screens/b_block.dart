@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:venue/components/all_in_one.dart';
 import 'package:venue/components/components.dart';
-import 'package:venue/screens/b_block.dart/Drawing%20Room%20B306/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Drawing%20Room%20B405/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Elective%20Room%20ME%20B207/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Guest%20Room%20A412/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Guest%20Room1%20B502/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Guest%20Room2%20B503/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Interview%20Room%20B506/main_screen.dart';
-import 'package:venue/screens/b_block.dart/ME%20Measurement%20Lab%20B304%20B305/main_screen.dart';
-import 'package:venue/screens/b_block.dart/P%20n%20T%20Cell%20Office%20B505/main_screen.dart';
-import 'package:venue/screens/b_block.dart/Power%20Electronics%20Lab%20B509/main_screen.dart';
 
 class HomeBBlock extends StatelessWidget {
   const HomeBBlock({super.key});
@@ -19,7 +10,7 @@ class HomeBBlock extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("VENUE'S"),
+        title: const Text("VENUE'S", style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -36,7 +27,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Elective Room ME B207',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ElectiveRoomMEB207(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Elective Room ME B207'),
                       ));
                     },
                   ),
@@ -47,7 +39,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Drawing Room B306',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DrawingRoomB306(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Drawing Room B306'),
                       ));
                     },
                   ),
@@ -63,7 +56,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'ME Measurement Lab B304/B305',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => MEMeasurementLabB304B305(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'ME Measurement Lab B304/B305'),
                       ));
                     },
                   ),
@@ -74,7 +68,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Drawing Room B405',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DrawingRoomB405(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Drawing Room B405'),
                       ));
                     },
                   ),
@@ -90,7 +85,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Interview Room B506',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => InterviewRoomB506(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Interview Room B506'),
                       ));
                     },
                   ),
@@ -101,7 +97,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Power Electronics Lab B509',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PowerElectronicsLabB509(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Power Electronics Lab B509'),
                       ));
                     },
                   ),
@@ -117,7 +114,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'P n T Cell Office B505',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PnTCellOfficeB505(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'P n T Cell Office B505'),
                       ));
                     },
                   ),
@@ -128,7 +126,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Guest Room1 B502',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => GuestRoom1B502(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Guest Room1 B502'),
                       ));
                     },
                   ),
@@ -144,7 +143,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Guest Room2 B503',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => GuestRoom2B503(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Guest Room2 B503'),
                       ));
                     },
                   ),
@@ -155,7 +155,8 @@ class HomeBBlock extends StatelessWidget {
                     text: 'Guest Room A412',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => GuestRoomA412(),
+                        builder: (context) => const AllInOneScreen(
+                            databaseName: 'Guest Room A412'),
                       ));
                     },
                   ),
