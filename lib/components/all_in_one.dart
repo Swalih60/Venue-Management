@@ -53,7 +53,7 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
   String? uid = FirebaseAuth.instance.currentUser?.uid;
   String branch = 'CSE';
   String sem = 'S1';
-  final name = TextEditingController();
+  final String? name = FirebaseAuth.instance.currentUser!.displayName;
   final event = TextEditingController();
 
   late DateTime selectedDate;
@@ -140,7 +140,7 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
 
     await FirebaseFirestore.instance.collection(widget.databaseName).add({
       'uid': uid,
-      'name': name.text,
+      'name': name,
       'event': event.text,
       'sem': sem,
       'branch': branch,
@@ -149,7 +149,7 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
       'eTime': selectedEndTime,
       'TimeStamp': Timestamp.now(),
     });
-    name.clear();
+
     event.clear();
 
     showDialog(
@@ -215,7 +215,21 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
                 ],
               ),
               const SizedBox(height: 40),
-              textfield(text: 'Name', controller: name),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 60,
+                  ),
+                  Text(
+                    'Name:   ',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    name!,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
               const SizedBox(height: 10),
               textfield(text: 'Event', controller: event),
               const SizedBox(height: 20),
@@ -343,7 +357,7 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 25),
                   child: Text(
                     'SCHEDULE',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),

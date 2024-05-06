@@ -6,17 +6,17 @@ import 'package:venue/screens/open_stage.dart';
 import 'b_block.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+  HomeScreen({
     super.key,
   });
 
+  final String? displayName = FirebaseAuth.instance.currentUser!.displayName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Block's",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          displayName!,
         ),
         centerTitle: true,
         actions: [

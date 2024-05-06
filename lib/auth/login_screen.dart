@@ -139,30 +139,30 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 50,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  GestureDetector(
-                    onTap: widget.onTap,
-                    child: const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                ],
-              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       'Not a member?',
+              //       style: TextStyle(
+              //         color: Colors.grey[700],
+              //       ),
+              //     ),
+              //     const SizedBox(
+              //       width: 4,
+              //     ),
+              //     GestureDetector(
+              //       onTap: widget.onTap,
+              //       child: const Text(
+              //         'Register now',
+              //         style: TextStyle(
+              //           color: Colors.blue,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     )
+              //   ],
+              // )
             ],
           ),
         ),
