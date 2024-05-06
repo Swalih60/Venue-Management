@@ -138,18 +138,6 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
       log(e.toString());
     }
 
-    await FirebaseFirestore.instance.collection(widget.databaseName).add({
-      'uid': uid,
-      'name': name,
-      'event': event.text,
-      'sem': sem,
-      'branch': branch,
-      'date': Timestamp.fromDate(selectedDate),
-      'sTime': selectedStartTime,
-      'eTime': selectedEndTime,
-      'TimeStamp': Timestamp.now(),
-    });
-
     event.clear();
 
     showDialog(
@@ -170,6 +158,18 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
         );
       },
     );
+
+    await FirebaseFirestore.instance.collection(widget.databaseName).add({
+      'uid': uid,
+      'name': name,
+      'event': event.text,
+      'sem': sem,
+      'branch': branch,
+      'date': Timestamp.fromDate(selectedDate),
+      'sTime': selectedStartTime,
+      'eTime': selectedEndTime,
+      'TimeStamp': Timestamp.now(),
+    });
   }
 
   @override
@@ -217,12 +217,12 @@ class _AllInOneScreenState extends State<AllInOneScreen> {
               const SizedBox(height: 40),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 60,
                   ),
-                  Text(
+                  const Text(
                     'Name:   ',
-                    style: const TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                   ),
                   Text(
                     name!,
